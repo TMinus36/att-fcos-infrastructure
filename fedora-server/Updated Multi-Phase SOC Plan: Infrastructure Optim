@@ -1,0 +1,249 @@
+Updated Multi-Phase SOC Plan: Infrastructure Optimization to Full Stack Visibility
+DNS & Configuration Fix: homepage.secnet.home
+ALLOWED_HOSTS Django Configuration
+
+Based on your subnet requirements, implement a dynamic ALLOWED_HOSTS solution for homepage.secnet.home:
+
+Option 1: Custom Middleware Approach
+
+python
+# Custom middleware for subnet-based host validation
+class SubnetHostMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+        self.allowed_subnets = ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16']
+    
+    def __call__(self, request):
+        if self.is_valid_subnet_host(request.get_host()):
+            return self.get_response(request)
+        # Fallback to standard ALLOWED_HOSTS check
+Option 2: Health Check Route Exception
+Add to Django settings for health check endpoints specifically:
+
+python
+ALLOWED_HOSTS = ['homepage.secnet.home', '.secnet.home'] + [
+    f'10.0.{i}.{j}' for i in range(256) for j in range(256)
+]
+Preemptive Phase 1: Container Resource Optimization
+Current Load Analysis & Resource Constraints
+
+Podman CPU/Memory Limits Implementation
+
+Set container resource limits to prevent host resource exhaustion:
+
+bash
+# Set CPU period and quota for existing containers
+podman update --cpu-period=100000 --cpu-quota=50000 <container_name>
+
+# Memory limits based on current load analysis
+podman update --memory=2g --memory-swap=4g <container_name>
+
+# For new container deployments
+podman run --cpu-period=100000 --cpu-quota=75000 --memory=4g --memory-swap=6g
+Resource Monitoring Commands
+
+bash
+# Monitor current container resource usage
+podman stats --format "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"
+
+# List all containers with size information
+podman ps -a -s --format "table {{.Names}}\t{{.Status}}\t{{.Size}}"
+Phase 1 Rewrite: Vault Agent & HashiCorp Vault Memory Issues
+Vault Memory Leak Resolution
+
+Your Vault environment is experiencing the classic "lease accumulation" problem causing OOM conditions. This is critical infrastructure that needs immediate attention:
+
+Immediate Actions:
+
+Lease cleanup: Implement gradual lease revocation to avoid OOM during cleanup
+
+Memory limits: Set appropriate container memory limits for Vault pods
+
+Token lifecycle management: Configure proper token TTL and renewal policies
+
+Vault Container Resource Limits
+
+bash
+# Set conservative memory limits for Vault containers
+podman update --memory=8g --memory-swap=12g vault-server
+podman update --cpu-quota=150000 vault-server
+
+# Monitor Vault memory usage
+podman exec vault-server vault status
+Lease Management Strategy:
+
+Implement batch lease revocation (100 leases per batch with delays)
+
+Configure automatic token cleanup policies
+
+Set reasonable TTL values for service tokens
+
+Phase 2: Existing Stack Utilization & Service Recovery
+Current Container Inventory & Service Integration
+
+Service Discovery & Health Check
+
+bash
+# Comprehensive container status review
+podman ps -a --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}\t{{.Image}}"
+
+# Check container logs for service issues
+podman logs --tail 50 <service_name>
+Utilize Existing SOC Components:
+
+SIEM Integration (If Wazuh deployed)
+
+Configure centralized log forwarding from all containers
+
+Implement container-specific detection rules
+
+Set up dashboard correlation between services
+
+Security Stack Integration:
+
+Log aggregation: Forward all container logs to existing SIEM
+
+Network monitoring: Configure container network policies for existing monitoring tools
+
+Vulnerability scanning: Integrate container image scanning with existing security tools
+
+Service Recovery Actions:
+
+Restart failed containers with proper resource limits
+
+Validate inter-service connectivity and DNS resolution
+
+Configure health checks for all critical services
+
+Phase 3: Advanced Container Security Implementation
+Runtime Security & Monitoring
+
+Container Behavior Monitoring
+
+bash
+# Deploy container runtime monitoring
+podman run -d --privileged --pid=host \
+  --volume /var/log:/var/log:ro \
+  --volume /etc:/etc:ro \
+  falco-container-monitor
+Security Policies:
+
+Implement pod security standards for existing deployments
+
+Configure network segmentation between container services
+
+Deploy secrets management integration with Vault
+
+Enable container image vulnerability scanning in CI/CD pipeline
+
+Log Integration Strategy:
+
+Configure structured logging across all containers
+
+Implement correlation IDs for request tracing
+
+Set up centralized log parsing and enrichment
+
+Phase 4: SOC Dashboard & Visualization Integration
+Unified Security Dashboard
+
+Dashboard Architecture:
+
+Primary: Wazuh dashboard for security events
+
+Infrastructure: Grafana for container metrics and health
+
+Compliance: Custom SOC 2 compliance dashboard
+
+Key Metrics Integration:
+
+Container security events and anomalies
+
+Network traffic patterns between services
+
+Resource utilization and performance baselines
+
+Incident response workflow status
+
+Alert Correlation:
+
+Cross-reference container logs with security events
+
+Implement automated alert triage based on container context
+
+Configure escalation policies for container security incidents
+
+Phase 5: Automated Threat Detection & Response
+AI-Powered Container Security
+
+Behavioral Analytics Implementation:
+
+Establish container behavior baselines
+
+Deploy anomaly detection for container activities
+
+Implement automated container isolation for suspected threats
+
+Automated Response Playbooks:
+
+Container compromise: Automatic container isolation and forensic data collection
+
+Resource exhaustion: Automatic scaling and resource rebalancing
+
+Network anomalies: Traffic blocking and containment procedures
+
+Integration with Existing SOAR:
+
+Configure automated incident response workflows
+
+Implement container-specific forensic data collection
+
+Set up automated remediation for common container security issues
+
+Phase 6: Compliance & Audit Framework
+SOC 2 Container Compliance
+
+Control Implementation:
+
+Access controls: Container-level RBAC and service account management
+
+Data protection: Encryption at rest and in transit for container data
+
+Network security: Micro-segmentation and zero-trust networking
+
+Monitoring: Comprehensive audit logging for all container activities
+
+Continuous Compliance Monitoring:
+
+Automated compliance scanning of container configurations
+
+Real-time compliance dashboard with control effectiveness metrics
+
+Automated evidence collection for compliance reporting
+
+Phase 7: Advanced Integration & Optimization
+Full Stack Visibility Achievement
+
+Deep Service Integration:
+
+Service mesh deployment for complete traffic visibility
+
+Distributed tracing implementation across all microservices
+
+Advanced correlation between infrastructure and application security events
+
+AI/ML Enhancement:
+
+Predictive analysis for container resource needs
+
+Advanced threat detection using container behavior patterns
+
+Automated optimization recommendations for security and performance
+
+Continuous Improvement:
+
+Regular security architecture reviews
+
+Performance optimization based on usage patterns
+
+Threat model updates based on new attack vectors

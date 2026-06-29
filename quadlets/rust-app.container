@@ -1,0 +1,16 @@
+[Unit]
+Description=Aegis Telematics Core Engine (Rust/Axum)
+After=network-online.target db-vault.service
+Requires=db-vault.service
+[Container]
+Image=ghcr.io/tminus36/aegis-telematics-app:latest
+ContainerName=aegis_core_engine
+Environment=DATABASE_URL=postgres://aegis_admin:VaultPasswordSecure2026@db_vault:5432/aegis_telemetry
+Environment=APP_ENVIRONMENT=production
+Network=att-net.network
+AutoUpdate=registry
+Label=traefik.enable=true
+Label=traefik.http.routers.rust-app.rule=Host(`api.att.local`) || PathPrefix(`/telemetry`) || PathPrefix(`/compliance`)
+Label=traefik.http.services.rust-app.loadbalancer.server.port=3000
+[Install]
+WantedBy=multi-user.target

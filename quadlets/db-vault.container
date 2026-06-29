@@ -1,0 +1,14 @@
+[Unit]
+Description=Aegis PostgreSQL Secure Vault
+After=network-online.target
+[Container]
+Image=docker.io/library/postgres:15-alpine
+ContainerName=db_vault
+Environment=POSTGRES_USER=aegis_admin
+Environment=POSTGRES_PASSWORD=VaultPasswordSecure2026
+Environment=POSTGRES_DB=aegis_telemetry
+Network=att-net.network
+Volume=db-vault.volume:/var/lib/postgresql/data:z
+Label=traefik.enable=false
+[Install]
+WantedBy=multi-user.target

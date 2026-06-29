@@ -1,0 +1,10 @@
+[Unit]
+Description=Prometheus Metrics Engine
+After=network-online.target
+[Container]
+Image=docker.io/prom/prometheus:latest
+ContainerName=prometheus_engine
+Network=att-net.network
+Volume=prometheus-data.volume:/prometheus:z
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Traefik Internal Ingress Controller
+After=network-online.target
+[Container]
+Image=docker.io/library/traefik:v2.10
+ContainerName=aegis_ingress_proxy
+Network=att-net.network
+PublishPort=80:80
+PublishPort=443:443
+PublishPort=8080:8080
+Volume=/run/podman/podman.sock:/var/run/docker.sock:z
+Exec=--api.insecure=true --providers.docker=true --providers.docker.exposedbydefault=false --entrypoints.web.address=:80 --entrypoints.websecure.address=:443
+[Install]
+WantedBy=multi-user.target

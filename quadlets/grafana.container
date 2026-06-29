@@ -1,0 +1,14 @@
+[Unit]
+Description=Grafana Telemetry Visualizer
+After=network-online.target prometheus.service
+[Container]
+Image=docker.io/grafana/grafana:latest
+ContainerName=grafana_ui
+Network=att-net.network
+Volume=grafana-data.volume:/var/lib/grafana:z
+Environment=GF_SECURITY_ADMIN_PASSWORD=VaultPasswordSecure2026
+Label=traefik.enable=true
+Label=traefik.http.routers.grafana.rule=Host(`metrics.att.local`)
+Label=traefik.http.services.grafana.loadbalancer.server.port=3000
+[Install]
+WantedBy=multi-user.target

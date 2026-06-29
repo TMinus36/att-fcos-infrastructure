@@ -1,0 +1,5 @@
+[Unit]
+Description=ATT Internal Zero Trust Bridge
+[Network]
+NetworkName=att-net
+Internal=false

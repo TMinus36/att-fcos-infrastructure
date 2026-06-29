@@ -1,0 +1,15 @@
+[Unit]
+Description=Wazuh SIEM Manager (NIST/PCI Compliance)
+After=network-online.target
+[Container]
+Image=docker.io/wazuh/wazuh-manager:latest
+ContainerName=wazuh_siem_engine
+Network=att-net.network
+Volume=wazuh-data.volume:/var/ossec/data:z
+PublishPort=1514:1514
+PublishPort=1515:1515
+Label=traefik.enable=true
+Label=traefik.http.routers.wazuh.rule=Host(`siem.att.local`)
+Label=traefik.http.services.wazuh.loadbalancer.server.port=55000
+[Install]
+WantedBy=multi-user.target

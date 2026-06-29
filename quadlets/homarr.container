@@ -1,0 +1,13 @@
+[Unit]
+Description=ATT Operations Command Center (Homarr)
+After=network-online.target
+[Container]
+Image=ghcr.io/ajnart/homarr:latest
+ContainerName=att_operations_dashboard
+Network=att-net.network
+Volume=/run/podman/podman.sock:/var/run/docker.sock:ro
+Label=traefik.enable=true
+Label=traefik.http.routers.homarr.rule=Host(`dashboard.att.local`) || PathPrefix(`/`)
+Label=traefik.http.services.homarr.loadbalancer.server.port=7575
+[Install]
+WantedBy=multi-user.target

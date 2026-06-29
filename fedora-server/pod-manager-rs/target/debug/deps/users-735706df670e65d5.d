@@ -1,0 +1,12 @@
+/home/timph/Projects/hsn/dev/production-final/pod-manager-rs/target/debug/deps/libusers-735706df670e65d5.rmeta: /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/lib.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/base.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/cache.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/mock.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/switch.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/traits.rs
+
+/home/timph/Projects/hsn/dev/production-final/pod-manager-rs/target/debug/deps/libusers-735706df670e65d5.rlib: /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/lib.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/base.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/cache.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/mock.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/switch.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/traits.rs
+
+/home/timph/Projects/hsn/dev/production-final/pod-manager-rs/target/debug/deps/users-735706df670e65d5.d: /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/lib.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/base.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/cache.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/mock.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/switch.rs /home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/traits.rs
+
+/home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/lib.rs:
+/home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/base.rs:
+/home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/cache.rs:
+/home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/mock.rs:
+/home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/switch.rs:
+/home/timph/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/users-0.11.0/src/traits.rs:

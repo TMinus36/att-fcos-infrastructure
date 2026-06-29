@@ -1,0 +1,1 @@
+/home/timph/Projects/hsn/dev/production-final/pod-manager-rs/target/debug/pod-manager-rs: /home/timph/Projects/hsn/dev/production-final/pod-manager-rs/src/main.rs /home/timph/Projects/hsn/dev/production-final/pod-manager-rs/src/manager.rs

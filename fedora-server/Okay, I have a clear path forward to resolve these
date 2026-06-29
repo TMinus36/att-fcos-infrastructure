@@ -1,0 +1,26 @@
+Okay, I have a clear path forward to resolve these cascading failures. The investigation has revealed several distinct issues that I will now address in order of priority.
+
+Problem Analysis:
+
+pod_manager2.py
+/home/timph/Projects/hsn/dev/production-final/pod_manager2.py
+ Bug: My previous edit introduced a bug. The script uses the standard yaml library, but my added code attempted to use ruamel.yaml syntax (YAML()). This caused the NameError: name 'YAML' is not defined, which prevented the script from cleaning up old containers, leading to the "name is already in use" and "address already in use" errors.
+Incorrect Network Interface: The ip route command shows the primary network interface is enp0s6, not eth0. The zeek container in pod4-security was configured to use eth0 with network_mode: host, causing it to exit because the interface didn't exist.
+Invalid Image Tags: The web search confirmed that the tags for ntopng and arkime are likely incorrect or the images are in a different repository, causing the pull failures.
+Resolution Plan:
+
+Fix 
+pod_manager2.py
+/home/timph/Projects/hsn/dev/production-final/pod_manager2.py
+: I will correct the YAML parsing logic in the 
+bring_up_pod_services
+ function to use the standard yaml.safe_load() method, which is compatible with the rest of the script.
+Update Network Interface: I will change the zeek command in 
+pod4-security/podman-compose.yml
+/home/timph/Projects/hsn/dev/production-final/PODMAN/pods/pod4-security/podman-compose.yml
+ to use the correct enp0s6 interface.
+Find Correct Image Tags: I will read the content from the official Docker Hub and GitHub pages I found to get valid image tags for ntopng and arkime.
+Update 
+pod6-network/podman-compose.yml
+: I will apply the correct image tags to the compose file.
+I will start by fixing the script and the network interface. I will then read the web pages to find the correct image tags.

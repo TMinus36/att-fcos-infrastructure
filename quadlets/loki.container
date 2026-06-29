@@ -1,0 +1,9 @@
+[Unit]
+Description=Loki Log Aggregator
+After=network-online.target
+[Container]
+Image=docker.io/grafana/loki:latest
+ContainerName=loki_engine
+Network=att-net.network
+[Install]
+WantedBy=multi-user.target

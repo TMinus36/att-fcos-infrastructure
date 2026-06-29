@@ -1,0 +1,63 @@
+Current Goals
+Successfully deploy all services in pod1-core using podman-compose:
+Vault Agent (already operational)
+Redis
+Traefik
+Homepage
+Ensure proper Vault integration for secret management across all services.
+Verify service health and inter-service communication.
+Current Barriers
+Container Naming Conflicts:
+vault-agent-pod1-core container is being recreated but not properly managed by podman-compose.
+Previous manual container creation is causing conflicts.
+Pod/Container State:
+Some containers might be in an inconsistent state from previous attempts.
+Vault Agent Integration:
+Need to confirm Vault agent is properly authenticating and providing secrets to dependent services.
+Remediation Plan
+1. Clean Up Existing State
+bash
+# Stop and remove all containers in the pod
+podman stop vault-agent-pod1-core homepage traefik redis 2>/dev/null || true
+podman rm vault-agent-pod1-core homepage traefik redis 2>/dev/null || true
+
+# Remove the pod (if it exists)
+podman pod rm -f pod1-core 2>/dev/null || true
+
+# Clean up volumes (be careful with this in production)
+podman volume prune -f
+2. Verify Vault Agent Configuration
+bash
+# Check Vault agent logs for successful authentication
+podman logs vault-agent-pod1-core
+
+# Verify secrets are being rendered
+ls -la ./vault_secrets/redis/
+cat ./vault_secrets/redis/redis.conf
+3. Recreate the Pod and Services
+bash
+# Recreate the pod and start all services
+podman-compose up -d
+
+# Check service status
+podman ps
+4. Verify Service Health
+bash
+# Check container logs
+podman logs traefik
+podman logs redis
+podman logs homepage
+
+# Check service health
+curl -I http://localhost:8080  # Traefik dashboard
+curl -I http://localhost:3001  # Homepage
+Next Steps
+If issues persist with podman-compose, consider:
+Using podman play kube with a generated Kubernetes YAML
+Creating a systemd service for the Vault agent
+Managing containers individually with proper start order
+For Vault integration:
+Verify Redis is using the Vault-provided config
+Check Traefik's access to TLS certificates
+Confirm Homepage can access required services
+Would you like me to proceed with any of these remediation steps?

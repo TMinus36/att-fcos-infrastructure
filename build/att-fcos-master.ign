@@ -1,0 +1,170 @@
+{
+  "ignition": {
+    "version": "3.4.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "groups": [
+          "wheel"
+        ],
+        "name": "att-admin",
+        "sshAuthorizedKeys": [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGc8my6Eu5ba9N+isCg8jMoEctXiuRpfQuS9DPOchByT admin@aegis-telematics-core"
+        ]
+      }
+    ]
+  },
+  "storage": {
+    "files": [
+      {
+        "path": "/etc/hostname",
+        "contents": {
+          "compression": "",
+          "source": "data:,att-fcos-production"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/sudoers.d/att-admin",
+        "contents": {
+          "compression": "",
+          "source": "data:,att-admin%20ALL%3D(ALL)%20NOPASSWD%3AALL"
+        },
+        "mode": 288
+      },
+      {
+        "path": "/etc/sysctl.d/99-wazuh-indexer.conf",
+        "contents": {
+          "compression": "",
+          "source": "data:,vm.max_map_count%3D262144%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/att-net.network",
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BUnit%5D%0ADescription%3DATT%20Internal%20Zero%20Trust%20Bridge%0A%5BNetwork%5D%0ANetworkName%3Datt-net%0AInternal%3Dfalse%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/db-vault.volume",
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BVolume%5D%0AVolumeName%3Datt-db-data%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/prometheus-data.volume",
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BVolume%5D%0AVolumeName%3Datt-prometheus-data%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/grafana-data.volume",
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BVolume%5D%0AVolumeName%3Datt-grafana-data%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/wazuh-data.volume",
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BVolume%5D%0AVolumeName%3Datt-wazuh-data%0A"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/cloudflared.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/0yRwW6bQBBA7/sV/AAuJk2lVuIQG+LimkVu13bAsqwVO8GDl126DLHN11dp2ii3ubx5M3r7jUE6sBj6ymFHaE0013ZQz1o68Epw1hNu6MkTgzGg2cMzgYsM0MW6s2+NRgMTkq4GYvu5NSTRgDuwtJU1RMpWZ3ATtJ+q96UfRvVNS4Ke2DvIZQuRhBr74wjOHunVfQRVA+NvzkgS+QZo8u8GlpgXdNa0YCgSG86T1VHkPxIeffBM4ApeD+4FK/DQ9CS19uC2PKWNxWKcNUWT3hUiuSvCssni9TQXaViIOsjj4p6Hya1s1iOPN7iaL4NXJmsU8jCZ8jGjLC5bPg+Cos3CldA6GxPK41NbjDPMRBryWGOKF6xu6Zf0fP97LWb5dqE+i7Zr1GP3tH065SAeLkIsuQqum3J85NsFD8SuW8hg+n0ntny7+Nnv2qmUv5ZfWXKFKqK/PTzfN9aXA9mhU5LAc4Nh+/TtwwPbSUOgZreoHTShP/Tg/sf6EwAA//+IL0aZ+QEAAA=="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/traefik.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/3SRy46cMBBF9/6K/gEMyfQCIXmR14LNaBZ5LFqtUYELUsKUUbnc0+TrI5rpREmUlaVb5+rYrtMXJj2bj5h6oUUpsvssgANNh5YVhSEcWh4FUzp8iKwSQ0Ax7wZFcYz6EmUqIgditAoyoprTxgExytm0M4zofOwnFEuxDNQJyFrq7mgub+2byvwqPMKMDnCk9Ey79HmReF3N425yoFowqn01m6fcBUrfn6Koq6umrv5IjseH5nh8+Iu6cXVlvsaQZ3SlZC6X6Ge4HzbFfmrKC8ht9nr7W/jDfLpi74oCFrLECfss6FQyHopikXghj5LsXvlfbvG6xIS+Wz0OkIO6AULaSGSVdYnEmuwLdha83z7BNXX173SX/2a2l55aTgohnM03YEX/fnVzDkpFTij3Bf0MAAD//2b92Gz0AQAA"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/rust-app.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/2ySz27iPBTF936KLGERg+D7ukCyNGmLNEgdBlHoLBAKN84lWHVsz/U1baU+/CgpQvOn6+Nzzs/H3m2d4b24x6jJBDbeqQIbE7MNWmyBjY7ZnSfM5q4xDrPBOkUeFa+pHYriyEjKIb94es69s8ahZKAGOaur/AzJsoxIZ6NRrPFnMoRR/aPs7rxjMA5pLxYtNKiakyZp/Ihb41Kc3oygQ8r5ipRDCDMLjJHF1b2EFlV/stSesMSeWMzd2ZB3LTpW98WmuC0e5+V2/aCCj9wQxtnoI7+EujVu9tTBrSDGF0/1I+pEOBlPbr7UVdlzz/7/bzq5OHoiZHr7o6VYrcr58mmx/r78Nl9uVCBfJ91tK5YfYylgzh2yvIwnisR+G2pgVNQld5EPUKFVTIBH8yzRQWVRMSX8SzkxB0k+MVKUlCJ360hKFtVXH3lwgGAkMEvrNdjDMHt/z1bApxXh0bwODqPrLT7RtG+DNeA0Hoaf9V4e8bdi66GuwHYW6mUkGTyxmo7HY7FbuMhg7V78AMdY376pNlk2eYpIl88jfgUAAP//hKuh8pUCAAA="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/db-vault.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/2yQwYrqUAyG9+cpfIG29wr3LoSz0FEGQbTjGXUhIqmN5WCa4+SkFefpB6vjymUg/5/vy3bFXndmjPEg/qw+sB1i5WMvD1ErQfcx6zk8NIK9NTSkZnhUFMuolyCnJDB5xlRBKlSzfQus4BllZ6Y1VGjLcDihpD5k5AsBuWbne28c/P2XAJ09o3mm5lCjLYt9212acOslcI2sNl+4z/flxO1XbrK0cCPcQ1l7fr2VD53bLJZj2zHnEOMlSHn36P/p/3+dGo8ezYqENapczfzuaUE1YdT04W3WgZqONelY07abB1kLcjN9Wn5RVoLC4NvMoECyKoBHf0qRoSC0R6CIZjvlqEC0MxtgxXJ0tXVD6pMmovz+9icAAP//mHQxxKkBAAA="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/prometheus.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/1TOvU7DUAwF4P0+RV8gYa90B/6GDlQswBBFyEoOweqNXfmegODpkRr+uniwdfyd7sGUfbpBHUKPVLd8Hz6Dr1jq5g4MHerm1iY1pMsXIrKB7x6Hxq2ooaXEBKbu2o2ihujTbpYJefThgGjVL47h82msb7dFiMr0m9jLjPx3f8bK7VcoC9kY2H7D6dHLchZoRqG0b6f19j/0mbqdVUopfXoSI8arjzwvhdosFfHT/SsAAP//fyADZQUBAAA="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/loki.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/zyOvWrDYAxFdz1FXsDOXviGtF0CIVvpYEwRyY0Q/iwV+YbSty+lP/O9nHOml3DO8oztUv5Oz2inXHx3StsdzAqmzJLDjagW4EfWMmR0D4zUMlCmpwyqB2qW46qGds3Lgho991Z609B9z8UfuhIb5f9+1hXte3lDmAfk/MNvSg4Bjr8+mY6xUXuf5VWDuD5+tvXe6cN9Q/1lfAUAAP//+YAxlcoAAAA="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/homarr.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/2yQMY/iQAyF+/kVKaFgUiEkpCk4rgDpxFFwtwVCxEkMmc2MHXkcdlfix6+AJcVqK8t+T+998v4feT2Y35gq8Z16JrfY7bK/HQrctpQtOUagOlsiKUo2WnEEkbFZnBTFEeobSzthCp7QKsgZ1eyXTAqeUA5mHeGM7txUYj3n8Eogmjf3kHkAxaRmcG8gogPVIw/9xxpSUzJIbTaPrpthQqj2q9v859BHdLn0lHdcR3gOm7hq5/kF5K7VXLUoj6Ow+QMlBqcCePKtRYIyoFPp8ZvSqHZWuFeUZB/gVvqAbsVJR8XAZ0HVBq4gFOPses22oM1W8OTfR0VejH9KTSgXX+EQGxjqEgJQdeNEuaDYjkXdbDqbmv2akkIIB/MCpFj/+nCxD+onfUJ5vv4zAAD//yllDNnRAQAA"
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/grafana.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/2yRQWsbQQyF7/MrfGwPHpsUegjMwY3T1NC6IU4cijGOdvfZGazVLBrNhuTXlybbGEpPAj3pfeJpcyfRtm6OXGvsLCYJV0p7EhrdgtHC9Hm0jrkQxxeom+0NGgT2lPQ4TsJR4I30ABt1mlrYI0r2GdrHGm5zkcQoCnTrFi0dEJpUH6E+psnhjfO3njMZsrn3jSW1CIO4K9Et36CBzMYC88MRbp24nCbHDRn5/rV3PulJJxyrd8aLu5Q+apIWYuHq6251eXF3s7j9tZvNfyyWu+vZanX/82Ye1lTYrinnp6TNCnVRnE3PPrvvVIGDKWEfjx5CFSOYFvyjPJp1XlMxaPYD3WthhG8p24eHP8HGOnsy85xq4oeP/3MYcjxZcKKmIiapoa8q1HdJLXyaTqdus5BsxLx19ySG5stzaAtbHJcMHd7kfgcAAP//P7iP6/MBAAA="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/containers/systemd/wazuh-manager.container",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/2yQMY/iQAyF+/kVKaHIBKRLE2mKO+6ki3QgJG6XAiFwggkjJp7I4wEtv36VAFugbVx89rOf3+aNrGzVbww1206sJ7OGWzwlq/LPPJkDQYOcjBbl6n+2nJXJzLeds0A1jtXPoyAbQrl6PqeenCXUAtygqM3Mk4Al5K0qW2jQXPu12VDT9r63cCAYRH3NLqB9DO6CxXaH1FhCtbifMCCSEop+nFTv3sWnID2AgL4MpMguwJkPAeusx8VNLWPlbDgtPYuZ5tMfRV9ead7TXP2DCp0RBjzas0aCyqERjvjSOYl0mn0U5KAHE5qjQ/PXBxnt+wc0iGjna3D78XfigHyxNT7VzsOhAteny0MPWXe9tzyfTCZqU1IQcG6r1kCCh18fpo1ObBoD8jP4zwAAAP//SvYA0dEBAAA="
+        },
+        "mode": 420
+      }
+    ]
+  },
+  "systemd": {
+    "units": [
+      {
+        "enabled": true,
+        "name": "podman.socket"
+      },
+      {
+        "enabled": true,
+        "name": "podman-auto-update.timer"
+      }
+    ]
+  }
+}

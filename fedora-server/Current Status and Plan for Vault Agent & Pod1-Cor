@@ -1,0 +1,47 @@
+Current Status and Plan for Vault Agent & Pod1-Core
+✅ Accomplished So Far
+Vault Agent Configuration
+Updated 
+agent.hcl
+ to use template blocks for certificates
+Created 
+.ctmpl
+ files for Traefik and Homepage certificates
+Fixed volume permissions for /vault/secrets/traefik/certs/
+Traefik Integration
+Set up dynamic TLS configuration via Vault Agent
+Configured Traefik to use certificates from Vault
+Verified successful certificate loading through DEBUG logs
+PKI & Certificates
+Successfully issued certificates via Vault CLI
+Stored certificates in Vault KV store
+Confirmed certificate rendering by Vault Agent
+🔄 Current Work in Progress
+Redis Service
+Investigating why Redis isn't starting despite Vault Agent being healthy
+Need to check Redis container logs for startup errors
+Verify Redis configuration file rendering
+Podman-Compose State
+Resolving inconsistencies in podman-compose ps output
+Ensuring all services start in the correct order
+📋 Next Steps
+Immediate Tasks
+ Check Redis container logs for startup errors
+ Verify Redis configuration file was rendered correctly by Vault Agent
+ Ensure Redis has proper permissions to access its configuration
+ Revert Traefik log level from DEBUG to INFO
+Verification
+ Confirm Traefik is serving HTTPS with the Vault-provided certificates
+ Test Redis connectivity and functionality
+ Verify Homepage service is working with its certificates
+Documentation
+ Document the Vault Agent setup process
+ Create a guide for adding new services with Vault-managed secrets
+ Document any manual steps required for certificate issuance
+Cleanup
+ Remove any temporary files or debug configurations
+ Ensure all secrets and sensitive data are properly secured
+🔍 Current Blockers
+Inconsistent behavior with podman-compose ps not showing all services
+Need to investigate why Redis isn't starting despite Vault Agent being healthy
+Would you like me to focus on any particular area from this list?
