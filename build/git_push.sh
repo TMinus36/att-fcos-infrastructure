@@ -1,28 +1,38 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Script: build/git_push.sh
+# Purpose: Stage, commit, and sync local configuration state with upstream remotes.
 
-# Exit immediately if a command exits with a non-zero status
 set -e
+
+# Resolve the project root (one level up from the script's location)
+PROJECT_ROOT="$(cd "$(dirname "$0")/.." >/dev/null 2>&1 && pwd)"
+
+echo "============================================================"
+echo "  [AUDIT] ATT GitOps - Pipeline Synchronization"
+echo "============================================================"
 
 # Check if a commit message was provided as an argument
 if [ -z "$1" ]; then
-  echo "Error: No commit message provided."
-  echo "Usage: ./git_push.sh \"Your commit message here\""
+  echo "[ FAIL ] Error: No commit message provided."
+  echo "Usage: ./build/git_push.sh \"Your commit message here\""
   exit 1
 fi
 
-COMMIT_MESSAGE=$1
+COMMIT_MESSAGE="$1"
 
-echo "Checking git status..."
+# Force shell context to the root of the repository
+cd "$PROJECT_ROOT"
+
+echo "[ INFO ] Evaluating git status..."
 git status -s
 
-echo "Adding files to staging..."
+echo "[ INFO ] Adding files to staging..."
 git add .
 
-echo "Committing with message: '$COMMIT_MESSAGE'..."
+echo "[ INFO ] Committing configuration state..."
 git commit -m "$COMMIT_MESSAGE"
 
-echo "Pushing to remote repository..."
-# Assuming you are pushing to the 'main' branch. Change to 'master' if needed.
+echo "[ INFO ] Pushing to remote GitOps repository..."
 git push origin main
 
-echo "Push complete!"
+echo "[  OK  ] Synchronization complete! Pipeline triggered."

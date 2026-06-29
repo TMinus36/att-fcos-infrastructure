@@ -16,6 +16,12 @@
     ]
   },
   "storage": {
+    "directories": [
+      {
+        "path": "/etc/containers/systemd",
+        "mode": 493
+      }
+    ],
     "files": [
       {
         "path": "/etc/hostname",
@@ -149,7 +155,23 @@
         "path": "/etc/containers/systemd/wazuh-manager.container",
         "contents": {
           "compression": "gzip",
-          "source": "data:;base64,H4sIAAAAAAAC/2yQMY/iQAyF+/kVKaHIBKRLE2mKO+6ki3QgJG6XAiFwggkjJp7I4wEtv36VAFugbVx89rOf3+aNrGzVbww1206sJ7OGWzwlq/LPPJkDQYOcjBbl6n+2nJXJzLeds0A1jtXPoyAbQrl6PqeenCXUAtygqM3Mk4Al5K0qW2jQXPu12VDT9r63cCAYRH3NLqB9DO6CxXaH1FhCtbifMCCSEop+nFTv3sWnID2AgL4MpMguwJkPAeusx8VNLWPlbDgtPYuZ5tMfRV9ead7TXP2DCp0RBjzas0aCyqERjvjSOYl0mn0U5KAHE5qjQ/PXBxnt+wc0iGjna3D78XfigHyxNT7VzsOhAteny0MPWXe9tzyfTCZqU1IQcG6r1kCCh18fpo1ObBoD8jP4zwAAAP//SvYA0dEBAAA="
+          "source": "data:;base64,H4sIAAAAAAAC/3SRQWvbQBCF7/srfEwOWilQHWrYQ+sWKmiMqdLmYEwyll/sxaNdMztrk/z6IqnuIbSXgX1vHt8sb/0zeN2YL0id+JP6GNwjveXDrG2+3s/uKdAeMrtZNu1DuVo0s0XsT+wpdLg1n14U4gL0EuVYxMA+wCrJHmoeKWj6j7dexKDkA2Rjmp72cLvYHSHWx/IywKdZ9BN9zqRIav6mltTDjStPyaN/Qtj7ALOcYI5UiwC1f+DmV+R8DRQ7UrLnUZmXZ5IypoSuHOT5m1nlLft0WEVRd1fffZgP471aD2ptvtMW7FQIL/5oEWjLcCoZ75yD6slKzApJdjzCSma4bzHpzfPwAUuqlmNH/Hz7r3CCnH2Ha5oj7bbEQwcyehB7Gm6r66qqzLqd1jfmwfeIWVsl0Rad+1hV5gfS8HTEF3pNZt2EpMS8GQvD7vOr6zOrL3KCXPv6HQAA///2tC2hJAIAAA=="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/systemd/system/att-gitops.service",
+        "contents": {
+          "compression": "gzip",
+          "source": "data:;base64,H4sIAAAAAAAC/7SRQU/bQBCF7/4VUw7cnC1KQ2lQpBqMEEK0VHFIRBRFm/XYHmLPmtlxSPrrK5dW5cKxtzfvSd+M3ixnTLqKUgxOqFXyPEmyDK5Jv7cBLj0XVHZi+wDuu7qOkkJRJoz64mUbe66JcaBWStRoblnDO1m0nKLsyOEqyg4tTjxjqLxGcy9b4jIlQadeDhOD6ozzrJYYJZhwCIpNHl3t0U3Vit4LTkwXxGyITevzxjJIxxDH0kC8g3cA494rqBz/hPgF/gyQe7dFGZA3tm6J0ZSkECqIHRxRAUv4AHEOg95dnYNWyNBrYlI4Pv6tBRuvCDbPwQuVxFCptmFselbVbdat1fXJSZLeprcPycfn9Hq72KTd40Xp14v96ehpfzHbtdPpc2joDLPZiG9+fL75MpTL+dXTIR9S+HTGLslGw+Hjt4dFMt3smo3cfX2lD5xvTHZH3IXhqbGqceF8iIkLsUGlc9oJ9vefQ0FH/1r8zxW2XV3/raOxxG/e58Ob5a9kpzXkFhvPsWDtbR79CgAA//9uyXLImAIAAA=="
+        },
+        "mode": 420
+      },
+      {
+        "path": "/etc/systemd/system/att-gitops.timer",
+        "contents": {
+          "compression": "",
+          "source": "data:,%5BUnit%5D%0ADescription%3DRun%20ATT%20GitOps%20Pull%20Every%205%20Minutes%0A%0A%5BTimer%5D%0AOnBootSec%3D2min%0AOnUnitActiveSec%3D5min%0A%0A%5BInstall%5D%0AWantedBy%3Dtimers.target%0A"
         },
         "mode": 420
       }
@@ -164,6 +186,10 @@
       {
         "enabled": true,
         "name": "podman-auto-update.timer"
+      },
+      {
+        "enabled": true,
+        "name": "att-gitops.timer"
       }
     ]
   }
