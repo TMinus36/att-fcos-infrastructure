@@ -7,7 +7,7 @@ Image=docker.io/cloudflare/cloudflared:latest
 ContainerName=aegis_zero_trust_edge
 Network=att-net.network
 # Strip the .exe and service install commands. Use the token ONLY.
-Environment=TUNNEL_TOKEN=eyJhIjoiYzBjYjI3YTE3Y2ZjMDQ1OTI2YTg0ODY5N2Ey...
+Environment=TUNNEL_TOKEN=eyJhIjoiYzBjYjI3YTE3Y2ZjMDQ1OTI2YTg0ODY5N2EyZjQzNDUiLCJ0IjoiMjdiN2E1NzMtMDZmNC00YmM2LTllMzEtODhmYzBiMTI2NDliIiwicyI6Ik5qQTBOVGd4TmpjdFpXVXhOeTAwTTJNd0xUZzFNVGN0TWpGa01HWTVNVGRsWm1aaSJ9eyJhIjoiYzBjYjI3YTE3Y2ZjMDQ1OTI2YTg0ODY5N2Ey...
 Exec=tunnel --no-autoupdate run
 
 [Service]
