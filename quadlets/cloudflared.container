@@ -1,11 +1,17 @@
 [Unit]
 Description=Cloudflare Zero Trust Tunnel
 After=network-online.target
+
 [Container]
 Image=docker.io/cloudflare/cloudflared:latest
 ContainerName=aegis_zero_trust_edge
 Network=att-net.network
-Environment=TUNNEL_TOKEN=cloudflared.exe service install eyJhIjoiYzBjYjI3YTE3Y2ZjMDQ1OTI2YTg0ODY5N2EyZjQzNDUiLCJ0IjoiMjdiN2E1NzMtMDZmNC00YmM2LTllMzEtODhmYzBiMTI2NDliIiwicyI6Ik5qQTBOVGd4TmpjdFpXVXhOeTAwTTJNd0xUZzFNVGN0TWpGa01HWTVNVGRsWm1aaSJ9
+# Strip the .exe and service install commands. Use the token ONLY.
+Environment=TUNNEL_TOKEN=eyJhIjoiYzBjYjI3YTE3Y2ZjMDQ1OTI2YTg0ODY5N2Ey...
 Exec=tunnel --no-autoupdate run
+
+[Service]
+Restart=always
+
 [Install]
 WantedBy=multi-user.target
