@@ -1,0 +1,13 @@
+# systemd/gitops-sync.timer
+[Unit]
+Description=Timer for ATT GitOps Synchronization Pipeline
+
+[Timer]
+# Trigger 1 minute after boot
+OnBootSec=1min
+# Execute exactly every 5 minutes thereafter
+OnUnitActiveSec=5min
+Unit=gitops-sync.service
+
+[Install]
+WantedBy=timers.target
