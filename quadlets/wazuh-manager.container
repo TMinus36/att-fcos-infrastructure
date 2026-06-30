@@ -2,7 +2,7 @@
 Description=Wazuh SIEM Manager (NIST/PCI Compliance)
 After=network-online.target
 [Container]
-Image=docker.io/wazuh/wazuh-manager:latest
+Image=docker.io/wazuh/wazuh-manager:4.15.5
 ContainerName=wazuh_siem_engine
 Network=att-net.network
 Volume=wazuh-data.volume:/var/ossec/data:z

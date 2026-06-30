@@ -1,0 +1,23 @@
+[Unit]
+Description=Wazuh Dashboard (Security Operations UI)
+After=network-online.target wazuh.service
+
+[Container]
+Image=docker.io/wazuh/wazuh-dashboard:4.14.5
+ContainerName=wazuh_dashboard
+Network=att-net.network
+PublishPort=5601:5601
+
+# Connect Dashboard to the Manager API and Indexer
+Environment=INDEXER_USERNAME=admin
+Environment=INDEXER_PASSWORD=VaultPasswordSecure2026
+Environment=WAZUH_API_URL=https://wazuh_siem_engine
+Environment=INDEXER_URL=https://wazuh_indexer:9200
+
+# Traefik Routing for the Web UI (User Facing)
+Label=traefik.enable=true
+Label=traefik.http.routers.wazuh-dash.rule=Host(`siem.att.local`)
+Label=traefik.http.services.wazuh-dash.loadbalancer.server.port=5601
+
+[Install]
+WantedBy=multi-user.target
