@@ -11,8 +11,8 @@ Volume=wazuh-indexer-data.volume:/var/lib/wazuh-indexer:z
 # Single node deployment for the prototype environment
 Environment=discovery.type=single-node
 Environment=OPENSEARCH_INITIAL_ADMIN_PASSWORD=VaultPasswordSecure2026
-# Security defaults (in production, we mount custom certs)
-Environment=DISABLE_INSTALL_DEMO_CONFIG=true
+
+# Removed DISABLE_INSTALL_DEMO_CONFIG to allow automatic TLS cert generation
 Environment=FIPS_MODE=false
 
 [Install]
